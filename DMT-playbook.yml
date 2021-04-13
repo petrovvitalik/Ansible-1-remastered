@@ -50,6 +50,8 @@
   hosts: web
   become: yes
 
+  tasks:
+
     - name: Download web image
       docker_image:
         repository: petrovitalik/dmt-repository
