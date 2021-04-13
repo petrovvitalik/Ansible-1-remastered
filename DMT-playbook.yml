@@ -1,0 +1,65 @@
+---
+- name: installing docker
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Ensure docker is present
+      apt:
+        name: "{{ item }}"
+        state: present
+      become: yes
+      with_items:
+        - docker.io
+        - python-pip
+
+- name: Building an image with artifact, pushing image to Dockerhub
+  hosts: build
+  become: yes
+
+  tasks:
+
+    - name: Cloning Dockerfile to build
+      git:
+        repo: http://193.122.59.82:3000/petrovvitalik/Ansible-1-remastered.git
+        dest: /root/build/
+        force: yes
+
+    - name: Build an image
+      docker_image:
+        path: /root/build/
+        name: webapp-remastered
+
+    - name: Login to Dockerhub
+      include_vars: docker_credentials.yml
+      community.docker.docker_login:
+        username: {{ login }}
+        password: {{ password }}
+
+    - name: tag the image
+      docker_image:
+        name: "webapp-remastered:latest"
+        repository: "dmt-repository:latest"
+
+    - name: push the image to dockerhub
+      docker_image:
+        name: "dmt-repository:latest"
+        push: yes
+
+- name: Running tomcat
+  hosts: web
+  become: yes
+
+    - name: Download web image
+      docker_image:
+        repository: petrovitalik/dmt-repository
+        name: webapp-remastered:latest
+        state: present
+
+    - name: Launch web app
+      docker_container:
+        name: webapp-remastered
+        image: webapp-remastered
+        state: started
+        ports:
+          - "8080:8080"
