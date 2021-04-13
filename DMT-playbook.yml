@@ -56,13 +56,13 @@
     - name: Download web image
       docker_image:
         repository: petrovitalik/dmt-repository
-        name: webapp-remastered:latest
+        tag: latest
         state: present
 
     - name: Launch web app
       docker_container:
         name: webapp-remastered
-        image: webapp-remastered
+        image: dmt-repository
         state: started
         ports:
           - "8080:8080"
