@@ -60,7 +60,7 @@
     - name: Launch web app
       docker_container:
         name: webapp-remastered
-        image: webapp-remastered
+        image: petrovitalik/webapp-remastered
         state: started
         ports:
           - "8080:8080"
