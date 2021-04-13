@@ -42,7 +42,7 @@
     - name: Tag and push to docker hub
       docker_image:
         name: webapp-remastered
-        repository: petrovitalik/dmt-repository
+        repository: petrovitalik/webapp-remastered
         tag: latest
         push: yes
 
@@ -55,9 +55,7 @@
 
     - name: Download web image
       docker_image:
-        repository: petrovitalik/dmt-repository
-        name: dmt-repository:latest
-        state: present
+        name: petrovitalik/webapp-remastered
 
     - name: Launch web app
       docker_container:
