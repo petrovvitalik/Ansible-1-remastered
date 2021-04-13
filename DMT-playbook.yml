@@ -59,7 +59,7 @@
 
     - name: Launch web app
       docker_container:
-        name: webapp-remastered
+        name: petrovitalik/webapp-remastered
         image: petrovitalik/webapp-remastered
         state: started
         ports:
