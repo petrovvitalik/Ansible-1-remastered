@@ -30,8 +30,10 @@
         path: /root/build/
         name: webapp-remastered
 
-    - name: Login to Dockerhub
+    - name: Pull variables with credentials from secret file
       include_vars: docker_credentials.yml
+
+    - name: Login to Dockerhub
       docker_login:
         username: "{{ login }}"
         password: "{{ password }}"
