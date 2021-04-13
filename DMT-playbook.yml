@@ -56,7 +56,7 @@
     - name: Download web image
       docker_image:
         repository: petrovitalik/dmt-repository
-        name: webapp-remastered
+        name: dmt-repository:latest
         state: present
 
     - name: Launch web app
