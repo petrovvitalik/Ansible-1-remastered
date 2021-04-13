@@ -39,7 +39,7 @@
         email: "{{ email }}"
         password: "{{ password }}"
 
-    name: Tag and push to docker hub
+    - name: Tag and push to docker hub
       docker_image:
         name: webapp-remastered
         repository: petrovitalik/dmt-repository
