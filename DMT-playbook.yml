@@ -36,6 +36,7 @@
     - name: Login to Dockerhub
       docker_login:
         username: "{{ login }}"
+        email: "{{ email }}"
         password: "{{ password }}"
 
     - name: tag the image
