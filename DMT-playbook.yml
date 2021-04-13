@@ -46,7 +46,8 @@
 
     - name: push the image to dockerhub
       docker_image:
-        name: "dmt-repository:latest"
+        name: "webapp-remastered:latest"
+        repository: petrovitalik/dmt-repository
         push: yes
 
 - name: Running tomcat
