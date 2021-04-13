@@ -32,7 +32,7 @@
 
     - name: Login to Dockerhub
       include_vars: docker_credentials.yml
-      community.docker.docker_login:
+      docker_login:
         username: {{ login }}
         password: {{ password }}
 
