@@ -49,7 +49,7 @@
 
   tasks:
 
-    - name: Download and Launch web app
+    - name: Download image and Launch web app container
       docker_container:
         name: webapp-remastered
         image: petrovitalik/webapp-remastered
