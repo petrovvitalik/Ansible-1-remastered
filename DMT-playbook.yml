@@ -39,16 +39,13 @@
         email: "{{ email }}"
         password: "{{ password }}"
 
-    - name: tag the image
+    name: Tag and push to docker hub
       docker_image:
-        name: "webapp-remastered:latest"
-        repository: "dmt-repository:latest"
-
-    - name: push the image to dockerhub
-      docker_image:
-        name: "webapp-remastered:latest"
+        name: webapp-remastered
         repository: petrovitalik/dmt-repository
+        tag: latest
         push: yes
+
 
 - name: Running tomcat
   hosts: web
